@@ -42,7 +42,7 @@ const createContact = async (token) => {
  context.log(process.env.CRM_ENDPOINT + process.env.CONTACT_URL_BASE)
   let res = await axios.post(
     process.env.CRM_ENDPOINT + process.env.CONTACT_URL_BASE, {
-      firstname: 'SumathyTest2Oct9',
+      firstname: 'SumathyTest3Oct9',
       lastname: 'Venugopal',
       emailaddress1: 'venusumathy@example.com'
     },
