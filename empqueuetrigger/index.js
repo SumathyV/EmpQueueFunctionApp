@@ -1,5 +1,5 @@
 module.exports = async function (context, myQueueItem) {
-    //context.log('Trying again JavaScript queue trigger function processed work item', myQueueItem);
+context.log('CRM integration starts JavaScript queue trigger function processed work item', myQueueItem);
 
     //#!/usr/bin/env node
 
@@ -16,30 +16,30 @@ const CRM_ENDPOINT = process.env.CRM_ENDPOINT;
 
 async function main() {
   try {
-    console.log(process.env.AAD_ENDPOINT + process.env.TENANT_ID + "/oauth2/token");
+    context.log(process.env.AAD_ENDPOINT + process.env.TENANT_ID + "/oauth2/token");
     const token = await getToken();
     //let token = authResponse.accessToken;
-    console.log("********token**********", token);
+    context.log("********token**********", token);
    /* getContacts(token).then((contacts) => {
       // Do something with the contacts
-      console.log("***********GET CONTACTS**********", contacts);
+      context.log("***********GET CONTACTS**********", contacts);
     });*/
     createContact(token).then((contacts) => {
       // Do something with the contacts
-     // console.log("***********CONTACTS CREATED**********");
+     // context.log("***********CONTACTS CREATED**********");
     });
     
   } catch (error) {
-    console.log(error);
+    context.log(error);
   }
 }
 const getToken = async () => {
   const authResponse = await auth.getToken(auth.tokenRequest);
-  console.log("********here*********", authResponse.accessToken);
+  context.log("********here*********", authResponse.accessToken);
   return authResponse.accessToken;
 };
 const createContact = async (token) => {
- console.log(process.env.CRM_ENDPOINT + process.env.CONTACT_URL_BASE)
+ context.log(process.env.CRM_ENDPOINT + process.env.CONTACT_URL_BASE)
   let res = await axios.post(
     process.env.CRM_ENDPOINT + process.env.CONTACT_URL_BASE, {
       firstname: 'SumathyTest1Oct3',
@@ -53,7 +53,7 @@ const createContact = async (token) => {
       },
     }
   );
-  console.log("res==>", res);
+  context.log("res==>", res);
   return res
 };
 const getContacts = async (token) => {
@@ -69,7 +69,7 @@ const getContacts = async (token) => {
       },
     }
   );
-  console.log("res==>", res.data);
+  context.log("res==>", res.data);
 };
 main();
 
