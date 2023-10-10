@@ -4,7 +4,7 @@
       "name": "myQueueItem",
       "type": "queueTrigger",
       "direction": "in",
-      "queueName": "testqueue-poison",
+      "queueName": "testqueue",
       "connection": "AzureWebJobsStorage"
     }
   ]
